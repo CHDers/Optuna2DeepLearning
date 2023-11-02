@@ -113,7 +113,7 @@ def get_default_device():
 
 
 class DLConfig:
-    BATCH_SIZE = 8
+    BATCH_SIZE = 16
     NEURONS_NUM = (2024, 1024, 512, 128)
     DEVICE = get_default_device()
     EPOCHS = 200
@@ -129,8 +129,8 @@ torch.cuda.manual_seed_all(420)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 # NOTE：---------------------------------------深度学习训练参数设置------------------------------------
-N_VALID_EXAMPLES = 20
-N_TRAIN_EXAMPLES = 20
+N_VALID_EXAMPLES = 100
+N_TRAIN_EXAMPLES = 100
 
 if __name__ == "__main__":
     print(FILE_ROOT, RESULT_PATH, FIGURE_PATH)

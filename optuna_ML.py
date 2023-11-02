@@ -7,6 +7,10 @@
 # @Software: PyCharm 
 # @Comment :
 
+# NOTE:
+#  Linking:
+#  https://zhuanlan.zhihu.com/p/259993570(Optuna — 超参自动化调整利器 学习笔记)
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -137,7 +141,7 @@ def objective(trial):
 
 if __name__ == "__main__":
     study = optuna.create_study(direction="maximize")
-    study.optimize(objective, n_trials=100, timeout=600)
+    study.optimize(objective, n_trials=100, timeout=600, show_progress_bar=True, n_jobs=-1)
 
     pruned_trials = [t for t in study.trials if t.state == optuna.trial.TrialState.PRUNED]
     complete_trials = [t for t in study.trials if t.state == optuna.trial.TrialState.COMPLETE]

@@ -10,6 +10,7 @@
 # NOTE:
 #  Linking:
 #  https://zhuanlan.zhihu.com/p/259993570(Optuna — 超参自动化调整利器 学习笔记)
+#  https://blog.csdn.net/jasminefeng/article/details/119642221(Pycharm中使用optuna调PyTorch超参基本操作)
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -28,6 +29,7 @@ from torchvision.transforms import transforms
 from tqdm import tqdm
 from rich import print
 import optuna
+import plotly
 import torchvision.datasets as datasets
 
 from pathlib import Path
@@ -159,3 +161,9 @@ if __name__ == "__main__":
     print("  Params: ")
     for key, value in trial.params.items():
         print("    {}: {}".format(key, value))
+
+    parallel = optuna.visualization.plot_parallel_coordinate(study,
+                                                             ['n_layers', 'optimizer', 'dropout_l1', 'dropout_l2',
+                                                              'n_units_l1', 'n_units_l2', ])
+    plotly.offline.plot(parallel)
+    print("🚀🚀🚀")
